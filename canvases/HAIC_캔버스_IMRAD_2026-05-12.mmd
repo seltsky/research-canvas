@@ -1,0 +1,67 @@
+flowchart TB
+    subgraph TITLE["HAIC Type 1 Reinsertion Paper - IMRAD Flow"]
+    end
+
+    subgraph INTRO["1. Introduction"]
+        I1[Background: HAIC port-catheter system]
+        I2[Type classification - Deschamps 2010]
+        I3[Historical: Arai 1982 → Yamagami → Meyblum 2025]
+        I4[Type 2 dysfunction problem]
+        I5[Gap: Type 1 reinsertion unstudied]
+        I6[Hypothesis statement]
+        I1 --> I2 --> I3 --> I4 --> I5 --> I6
+    end
+
+    subgraph METH["2. Methods"]
+        M1[6 patients, single center, 2024-2026]
+        M2[Inclusion criteria - Type 2 dysfunction]
+        M3[Procedure - Femoral, B.Braun, end-hole]
+        M4[Mild curve, no fixation]
+        M5[Reuse GDA embolization]
+        M6[Follow-up protocol]
+        M1 --> M2 --> M3 --> M4 --> M5 --> M6
+    end
+
+    subgraph RES["3. Results"]
+        R1[Cohort characteristics]
+        R2[Technical success]
+        R3[Migration rate - vs Deschamps 50%]
+        R4[HA occlusion rate]
+        R5[HAIC sessions]
+        R6[Complications]
+        R1 --> R2 --> R3 --> R4 --> R5 --> R6
+    end
+
+    subgraph DISC["4. Discussion"]
+        D1[Compare with Deschamps Meyblum]
+        D2[Mechanism hypotheses]
+        D2A[H1 Vascular remodeling]
+        D2B[H2 Reduced patient activity]
+        D2C[H3 Wall friction at curve apex]
+        D2D[H4 Less torsional stress - Hu 2019]
+        D2E[H5 Fibrin sheath remnant]
+        D3[Limitations - N=6, single center, bias]
+        D4[Future work - phantom validation]
+        D1 --> D2
+        D2 --> D2A
+        D2 --> D2B
+        D2 --> D2C
+        D2 --> D2D
+        D2 --> D2E
+        D2 --> D3
+        D3 --> D4
+    end
+
+    subgraph CONC["5. Conclusion"]
+        C1[Tech Note message]
+        C2[Target: CVIR / DIR / Acta Tech Note]
+    end
+
+    INTRO --> METH --> RES --> DISC --> CONC
+
+    style D2 fill:#ffeb3b,stroke:#333,stroke-width:3px
+    style D2A fill:#fff9c4
+    style D2B fill:#fff9c4
+    style D2C fill:#fff9c4
+    style D2D fill:#fff9c4
+    style D2E fill:#fff9c4

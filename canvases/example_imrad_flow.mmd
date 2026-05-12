@@ -1,0 +1,47 @@
+flowchart TB
+    subgraph TITLE["연구 논문 IMRAD 흐름 예시"]
+    end
+
+    subgraph INTRO["1. Introduction"]
+        I1["Background"]
+        I2["Literature gap"]
+        I3["Hypothesis"]
+        I1 --> I2 --> I3
+    end
+
+    subgraph METH["2. Methods"]
+        M1["Cohort"]
+        M2["Procedure"]
+        M3["Outcome measures"]
+        M4["Statistical analysis"]
+        M1 --> M2 --> M3 --> M4
+    end
+
+    subgraph RES["3. Results"]
+        R1["Cohort characteristics"]
+        R2["Primary outcomes"]
+        R3["Secondary outcomes"]
+        R4["Adverse events"]
+        R1 --> R2 --> R3 --> R4
+    end
+
+    subgraph DISC["4. Discussion"]
+        D1["Compare with literature"]
+        D2["Mechanism / Interpretation"]
+        D3["Limitations"]
+        D4["Future work"]
+        D1 --> D2 --> D3 --> D4
+    end
+
+    subgraph CONC["5. Conclusion"]
+        C1["Take-home message"]
+    end
+
+    INTRO --> METH --> RES --> DISC --> CONC
+
+    style TITLE fill:#0969da,color:#fff
+    style INTRO fill:#ddf4ff
+    style METH fill:#dcfce7
+    style RES fill:#fef3c7
+    style DISC fill:#fee2e2
+    style CONC fill:#f3e8ff

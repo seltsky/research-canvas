@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research Canvas — Mermaid 기반 연구 캔버스</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <!-- Top Toolbar -->
+  <header class="toolbar">
+    <div class="toolbar-group">
+      <span class="logo">📊 Research Canvas</span>
+    </div>
+    <div class="toolbar-group">
+      <input type="text" id="filename" placeholder="파일명" value="untitled">
+      <button id="btnNew" title="새 캔버스 (기본 IMRAD 템플릿)">새로 만들기</button>
+      <button id="btnTemplate" title="템플릿 선택 (IMRAD, mindmap, timeline 등)">📋 템플릿</button>
+      <button id="btnUpload" title=".mmd 또는 .md 파일 불러오기">📂 불러오기</button>
+      <input type="file" id="fileInput" accept=".mmd,.md,.txt" style="display:none">
+      <button id="btnSave" class="primary" title="현재 캔버스를 .mmd 파일로 다운로드">💾 저장</button>
+    </div>
+    <div class="toolbar-group">
+      <button id="btnExportPng" title="PNG 이미지로 내보내기">🖼 PNG</button>
+      <button id="btnExportSvg" title="SVG 벡터로 내보내기">📐 SVG</button>
+    </div>
+    <div class="toolbar-group">
+      <button id="btnTheme" title="테마 변경">🌓</button>
+      <button id="btnHelp" title="도움말">?</button>
+    </div>
+  </header>
+
+  <!-- Main Content: Editor + Visual -->
+  <main class="main">
+    <section class="editor-pane">
+      <div class="pane-header">
+        <span>📝 Mermaid 편집기</span>
+        <span class="pane-info" id="syntaxHint">flowchart, mindmap, sequenceDiagram, gantt 등 모두 지원</span>
+      </div>
+      <textarea id="editor" spellcheck="false" placeholder="Mermaid syntax 입력하세요. 예시:&#10;&#10;flowchart TD&#10;  A[시작] --> B{결정}&#10;  B -->|Yes| C[실행]&#10;  B -->|No| D[종료]"></textarea>
+    </section>
+
+    <div class="splitter" id="splitter" title="드래그하여 패널 크기 조절"></div>
+
+    <section class="visual-pane">
+      <div class="pane-header">
+        <span>🎨 Visual 캔버스</span>
+        <div class="zoom-controls">
+          <button id="btnZoomOut" title="축소 (-)">➖</button>
+          <span id="zoomLevel" class="zoom-level">100%</span>
+          <button id="btnZoomIn" title="확대 (+)">➕</button>
+          <button id="btnZoomReset" title="크기 원래대로 (0)">⟲</button>
+          <button id="btnFitWidth" title="화면에 맞추기 (F)">↔</button>
+        </div>
+        <span class="pane-info" id="renderStatus">대기 중</span>
+      </div>
+      <div class="visual-wrapper" id="visualWrapper">
+        <div id="visual" class="mermaid-container"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Bottom Comment Thread -->
+  <section class="comments">
+    <div class="pane-header">
+      <span>💬 Comment Thread <span class="badge" id="commentCount">0</span></span>
+      <div>
+        <button id="btnLoadComments">📂 코멘트 불러오기</button>
+        <input type="file" id="commentInput" accept=".json" style="display:none">
+        <button id="btnSaveComments">💾 코멘트 저장</button>
+        <button id="btnToggleComments" title="코멘트 영역 접기/펼치기">▼</button>
+      </div>
+    </div>
+    <div id="commentList" class="comment-list"></div>
+    <form id="commentForm" class="comment-form">
+      <input type="text" id="authorInput" placeholder="이름 (예: 김용상)" required maxlength="40">
+      <textarea id="commentText" placeholder="코멘트를 입력하세요..." required maxlength="2000"></textarea>
+      <button type="submit" class="primary">📝 코멘트 작성</button>
+    </form>
+  </section>
+
+  <!-- Status Bar -->
+  <footer class="statusbar">
+    <span id="status">준비됨</span>
+    <span class="spacer"></span>
+    <span class="hint">Cmd/Ctrl+S 저장 · Cmd/Ctrl+/ 도움말</span>
+  </footer>
+</div>
+
+<!-- Help Modal -->
+<div id="helpModal" class="modal" style="display:none">
+  <div class="modal-content">
+    <h2>Research Canvas 도움말</h2>
+    <h3>지원하는 Mermaid 다이어그램</h3>
+    <pre><code>flowchart TD       (흐름도)
+mindmap            (마인드맵)
+sequenceDiagram    (시퀀스)
+classDiagram       (클래스)
+gantt              (간트차트)
+pie                (파이차트)
+stateDiagram-v2    (상태도)
+erDiagram          (ER 다이어그램)
+journey            (사용자 여정)
+timeline           (타임라인)</code></pre>
+
+    <h3>Flowchart 예시 (IMRAD)</h3>
+    <pre><code>flowchart TD
+    A[Introduction] --> B[Methods]
+    B --> C[Results]
+    C --> D[Discussion]
+    D --> E[Conclusion]</code></pre>
+
+    <h3>Mindmap 예시</h3>
+    <pre><code>mindmap
+  root((연구 주제))
+    Introduction
+      Background
+      Hypothesis
+    Methods
+    Results
+    Discussion</code></pre>
+
+    <h3>한글 사용</h3>
+    <p>한글 노드는 따옴표나 대괄호로 감싸기:<br>
+    <code>A[가설 1] --> B[검증]</code></p>
+
+    <h3>키보드 단축키</h3>
+    <ul>
+      <li>Cmd/Ctrl + S: 저장</li>
+      <li>Cmd/Ctrl + /: 도움말 토글</li>
+      <li>Esc: 모달 닫기</li>
+      <li>+ / =: 캔버스 확대 (편집기 외 영역에서)</li>
+      <li>- / _: 캔버스 축소</li>
+      <li>0: 100%로 reset</li>
+      <li>F: 화면 넓이에 맞추기</li>
+      <li>Ctrl/Cmd + 마우스휠: 캔버스 zoom</li>
+    </ul>
+
+    <h3>인터랙션</h3>
+    <ul>
+      <li>Visual 캔버스의 노드를 클릭하면 편집기에서 해당 텍스트가 highlight + 줄로 이동</li>
+      <li>편집기와 캔버스 사이의 가운데 막대(⋮⋮)를 drag하면 패널 크기 조절</li>
+      <li>패널 크기는 자동 저장됨</li>
+    </ul>
+
+    <h3>파일 형식</h3>
+    <ul>
+      <li>.mmd: Mermaid 캔버스 파일</li>
+      <li>.comments.json: 코멘트 thread 파일</li>
+    </ul>
+
+    <h3>AI와 협업하기</h3>
+    <ol>
+      <li>편집기에서 Mermaid 텍스트 전체 복사 (Cmd/Ctrl+A → Cmd/Ctrl+C)</li>
+      <li>본인 AI (Claude, ChatGPT 등)에 붙여넣기</li>
+      <li>"이 부분 이렇게 수정해줘" 요청</li>
+      <li>AI가 준 새 텍스트를 편집기에 다시 붙여넣기</li>
+      <li>우측 캔버스가 즉시 업데이트됨</li>
+    </ol>
+
+    <p><a href="https://mermaid.js.org/intro/" target="_blank">Mermaid 공식 문서 →</a></p>
+
+    <button onclick="document.getElementById('helpModal').style.display='none'" class="primary">닫기</button>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

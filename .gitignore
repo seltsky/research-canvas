@@ -1,0 +1,6 @@
+.DS_Store
+.moai/cache/
+.moai/locks/
+node_modules/
+*.swp
+*.bak
