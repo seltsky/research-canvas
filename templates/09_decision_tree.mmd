@@ -1,0 +1,14 @@
+%% Clinical Decision Tree Template (의사결정 나무)
+%% 사용법: 본인 임상 결정 알고리즘으로 수정
+flowchart TD
+    A[환자 평가<br/>: ___] --> B{기준 1<br/>예: 연령 65 이상?}
+    B -->|Yes| C{기준 2A<br/>예: 동반 질환 있음?}
+    B -->|No| D{기준 2B<br/>예: 증상 심각?}
+    C -->|Yes| E1[Action 1<br/>: ___]
+    C -->|No| E2[Action 2<br/>: ___]
+    D -->|Yes| E3[Action 3<br/>: ___]
+    D -->|No| E4[Action 4<br/>: ___]
+    E1 --> F[Outcome A]
+    E2 --> F
+    E3 --> G[Outcome B]
+    E4 --> G

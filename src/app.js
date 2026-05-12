@@ -144,6 +144,165 @@ const TEMPLATES = {
     style G fill:#fef3c7
 `
   },
+  stard: {
+    name: "STARD 2015 Flow (진단 정확도 연구)",
+    content: `flowchart TD
+    A["Eligible patients<br>n = ___"] --> B{"Met inclusion<br>criteria?"}
+    B -->|"No"| C["Excluded<br>n = ___"]
+    B -->|"Yes"| D["Index test performed<br>n = ___"]
+    D --> E["Reference standard performed<br>n = ___"]
+    E --> F1["Disease+<br>n = ___"]
+    E --> F2["Disease-<br>n = ___"]
+    F1 --> G1["Index+ TP n=___<br>Index- FN n=___"]
+    F2 --> G2["Index+ FP n=___<br>Index- TN n=___"]
+    G1 --> H["Sensitivity / Specificity<br>PPV / NPV / AUC"]
+    G2 --> H
+
+    style D fill:#ddf4ff
+    style E fill:#dcfce7
+    style H fill:#fef3c7
+`
+  },
+  prisma: {
+    name: "PRISMA 2020 Flow (체계적 문헌고찰)",
+    content: `flowchart TD
+    A1["Records identified from databases<br>PubMed n=___ Embase n=___"] --> A2["After duplicates removed<br>n = ___"]
+    A3["Additional from registries<br>n = ___"] --> A2
+    A2 --> B["Records screened<br>n = ___"]
+    B --> B1["Excluded by title/abstract<br>n = ___"]
+    B --> C["Reports sought for retrieval<br>n = ___"]
+    C --> C1["Reports not retrieved<br>n = ___"]
+    C --> D["Reports assessed for eligibility<br>n = ___"]
+    D --> D1["Excluded with reasons<br>n = ___"]
+    D --> E["Studies included in review<br>n = ___"]
+    E --> F["Studies in meta-analysis<br>n = ___"]
+
+    style A1 fill:#ddf4ff
+    style A3 fill:#ddf4ff
+    style E fill:#fef3c7
+    style F fill:#dcfce7
+`
+  },
+  tripod_ai: {
+    name: "TRIPOD-AI Flow (AI 예측 모델)",
+    content: `flowchart TD
+    A["Source dataset<br>n = ___"] --> B{"Inclusion criteria"}
+    B -->|"Excluded"| C["Excluded<br>이유: ___"]
+    B -->|"Included"| D["Final cohort<br>n = ___"]
+    D --> E1["Training set<br>n = ___ (___%)"]
+    D --> E2["Validation set<br>n = ___ (___%)"]
+    D --> E3["Test set<br>n = ___ (___%)"]
+    E1 --> F["Model architecture<br>예: CNN, Transformer"]
+    E2 --> F
+    F --> G["Training + tuning"]
+    G --> H["Performance evaluation<br>AUROC / Sensitivity / Specificity"]
+    E3 --> H
+    H --> I["External validation<br>n = ___ at ___"]
+    I --> J["Clinical interpretation"]
+
+    style D fill:#ddf4ff
+    style F fill:#dcfce7
+    style H fill:#fef3c7
+    style I fill:#fee2e2
+`
+  },
+  patient_pathway: {
+    name: "Patient Pathway (환자 임상 경로)",
+    content: `flowchart TD
+    A["환자 내원<br>증상: ___"] --> B["초기 평가<br>병력 + 신체검사"]
+    B --> C{"진단 검사"}
+    C --> C1["영상: ___"]
+    C --> C2["혈액: ___"]
+    C --> C3["기타: ___"]
+    C1 --> D{"진단"}
+    C2 --> D
+    C3 --> D
+    D -->|"확진"| E["치료 결정"]
+    D -->|"불확실"| F["추가 검사"]
+    F --> D
+    E --> G1["Option 1: ___"]
+    E --> G2["Option 2: ___"]
+    E --> G3["Option 3: ___"]
+    G1 --> H["추적 관찰"]
+    G2 --> H
+    G3 --> H
+    H --> I{"결과 평가"}
+    I -->|"호전"| J["종료"]
+    I -->|"악화"| K["재평가"]
+    K --> E
+
+    style A fill:#ddf4ff
+    style D fill:#fef3c7
+    style E fill:#dcfce7
+    style J fill:#dcfce7
+`
+  },
+  mechanism: {
+    name: "Mechanism Diagram (병태생리/시술 메커니즘)",
+    content: `flowchart TD
+    A["원인 자극<br>예: 시술 stress"] --> B["1차 반응<br>예: 혈관 손상"]
+    B --> C{"매개 인자"}
+    C --> C1["인자 1: ___"]
+    C --> C2["인자 2: ___"]
+    C --> C3["인자 3: ___"]
+    C1 --> D["Pathway A<br>예: 염증 반응"]
+    C2 --> E["Pathway B<br>예: 응고 활성"]
+    C3 --> F["Pathway C<br>예: 혈관 수축"]
+    D --> G["중간 결과<br>예: 부종"]
+    E --> G
+    F --> G
+    G --> H{"최종 outcome"}
+    H --> H1["성공: ___"]
+    H --> H2["실패: ___"]
+    H --> H3["합병증: ___"]
+
+    style A fill:#fee2e2
+    style C fill:#fef3c7
+    style G fill:#ddf4ff
+    style H fill:#dcfce7
+`
+  },
+  decision_tree: {
+    name: "Clinical Decision Tree (임상 의사결정)",
+    content: `flowchart TD
+    A["환자 평가<br>: ___"] --> B{"기준 1<br>예: 연령 65 이상?"}
+    B -->|"Yes"| C{"기준 2A<br>예: 동반 질환?"}
+    B -->|"No"| D{"기준 2B<br>예: 증상 심각?"}
+    C -->|"Yes"| E1["Action 1<br>: ___"]
+    C -->|"No"| E2["Action 2<br>: ___"]
+    D -->|"Yes"| E3["Action 3<br>: ___"]
+    D -->|"No"| E4["Action 4<br>: ___"]
+    E1 --> F["Outcome A"]
+    E2 --> F
+    E3 --> G["Outcome B"]
+    E4 --> G
+
+    style A fill:#ddf4ff
+    style F fill:#dcfce7
+    style G fill:#fef3c7
+`
+  },
+  cohort_selection: {
+    name: "Cohort Selection (연구 코호트 선정)",
+    content: `flowchart TD
+    A["전체 후보<br>n = ___"] --> B{"포함 기준<br>: ___"}
+    B -->|"미충족"| C["제외<br>n = ___"]
+    B -->|"충족"| D{"제외 기준 1<br>: ___"}
+    D -->|"해당"| E1["제외 n = ___<br>이유: ___"]
+    D -->|"미해당"| F{"제외 기준 2<br>: ___"}
+    F -->|"해당"| E2["제외 n = ___<br>이유: ___"]
+    F -->|"미해당"| G{"제외 기준 3<br>: ___"}
+    G -->|"해당"| E3["제외 n = ___<br>이유: ___"]
+    G -->|"미해당"| H["최종 코호트<br>n = ___"]
+    H --> I1["Group A<br>n = ___"]
+    H --> I2["Group B<br>n = ___"]
+
+    style A fill:#ddf4ff
+    style H fill:#fef3c7
+    style I1 fill:#dcfce7
+    style I2 fill:#dcfce7
+`
+  },
   empty: {
     name: "빈 캔버스",
     content: ""

@@ -1,0 +1,16 @@
+%% TRIPOD-AI Flow Diagram (AI 예측 모델 개발/검증)
+%% 사용법: 데이터셋 정보, 모델 정보 본인 연구로 수정
+flowchart TD
+    A[Source dataset<br/>n = ___] --> B{Inclusion criteria}
+    B -->|Excluded| C[Excluded<br/>이유: ___]
+    B -->|Included| D[Final cohort<br/>n = ___]
+    D --> E1[Training set<br/>n = ___, %=___]
+    D --> E2[Validation set<br/>n = ___, %=___]
+    D --> E3[Test set<br/>n = ___, %=___]
+    E1 --> F[Model architecture<br/>예: CNN, Transformer]
+    E2 --> F
+    F --> G[Model training + tuning]
+    G --> H[Performance evaluation<br/>AUROC, Sensitivity, Specificity]
+    E3 --> H
+    H --> I[External validation<br/>n = ___ at ___]
+    I --> J[Clinical interpretation]

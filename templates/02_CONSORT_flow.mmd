@@ -1,0 +1,14 @@
+%% CONSORT 2010 Flow Diagram Template (RCT 환자 흐름)
+%% 사용법: 숫자 (n=) 본인 연구 데이터로 수정
+flowchart TD
+    A[Assessed for eligibility<br/>n = ___] --> B{Excluded<br/>n = ___}
+    B -->|Not meeting criteria| B1[n = ___]
+    B -->|Declined| B2[n = ___]
+    B -->|Other reasons| B3[n = ___]
+    A --> C[Randomized<br/>n = ___]
+    C --> D1[Allocated to Intervention<br/>n = ___]
+    C --> D2[Allocated to Control<br/>n = ___]
+    D1 --> E1[Lost to follow-up<br/>n = ___]
+    D2 --> E2[Lost to follow-up<br/>n = ___]
+    E1 --> F1[Analyzed<br/>n = ___]
+    E2 --> F2[Analyzed<br/>n = ___]

@@ -1,0 +1,18 @@
+%% Mechanism Diagram Template (병태생리/시술 메커니즘)
+%% 사용법: 본인 가설 메커니즘으로 수정
+flowchart TD
+    A[원인 자극<br/>예: 시술 stress] --> B[1차 반응<br/>예: 혈관 손상]
+    B --> C{매개 인자}
+    C --> C1[인자 1: ___]
+    C --> C2[인자 2: ___]
+    C --> C3[인자 3: ___]
+    C1 --> D[Pathway A<br/>예: 염증 반응]
+    C2 --> E[Pathway B<br/>예: 응고 활성]
+    C3 --> F[Pathway C<br/>예: 혈관 수축]
+    D --> G[중간 결과<br/>예: 부종]
+    E --> G
+    F --> G
+    G --> H{최종 outcome}
+    H --> H1[성공: ___]
+    H --> H2[실패: ___]
+    H --> H3[합병증: ___]

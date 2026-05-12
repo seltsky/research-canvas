@@ -1,0 +1,13 @@
+%% STARD 2015 Flow Diagram (진단 정확도 연구)
+%% 사용법: 숫자 본인 연구 데이터로 수정
+flowchart TD
+    A[Eligible patients<br/>n = ___] --> B{Met inclusion<br/>criteria?}
+    B -->|No| C[Excluded<br/>n = ___]
+    B -->|Yes| D[Index test performed<br/>n = ___]
+    D --> E[Reference standard performed<br/>n = ___]
+    E --> F1[Disease+<br/>n = ___]
+    E --> F2[Disease-<br/>n = ___]
+    F1 --> G1[Index+ TP n=___<br/>Index- FN n=___]
+    F2 --> G2[Index+ FP n=___<br/>Index- TN n=___]
+    G1 --> H[Sensitivity / Specificity<br/>PPV / NPV / AUC 산출]
+    G2 --> H

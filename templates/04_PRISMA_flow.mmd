@@ -1,0 +1,13 @@
+%% PRISMA 2020 Flow Diagram (체계적 문헌고찰)
+%% 사용법: 숫자 본인 검색 결과로 수정
+flowchart TD
+    A1[Records identified from databases<br/>PubMed n=___ Embase n=___] --> A2[Records after duplicates removed<br/>n = ___]
+    A3[Additional records from registries<br/>n = ___] --> A2
+    A2 --> B[Records screened<br/>n = ___]
+    B --> B1[Records excluded by title/abstract<br/>n = ___]
+    B --> C[Reports sought for retrieval<br/>n = ___]
+    C --> C1[Reports not retrieved<br/>n = ___]
+    C --> D[Reports assessed for eligibility<br/>n = ___]
+    D --> D1[Reports excluded with reasons<br/>n = ___]
+    D --> E[Studies included in review<br/>n = ___]
+    E --> F[Studies in meta-analysis<br/>n = ___]
